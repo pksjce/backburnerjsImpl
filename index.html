@@ -1,0 +1,58 @@
+<html>
+	<head>
+		Test Backburner
+	</head>
+	<body>
+		<div id='too'>
+		</div>
+		<script id="entry-template" type="text/x-handlebars-template">
+  			My name is {{name}}
+  			Age is {{age}}
+  			I work as a {{profession}}
+		</script>
+		<script type='text/javascript' src='jquery.js'>
+		</script>
+		<script type='text/javascript' src='handlebars.js'>
+		</script>
+		<script type='text/javascript' src='backburner.js'>
+		</script>
+		<script type='text/javascript' src='bookBinder.js'>
+		</script>
+		<script type='text/javascript'>
+			$(function(){
+				var myBookBinder = new bookBinder(function(templateName, object, element){
+					//var temp = Handlebars.compile($('#entry-template').html())({'name':'pavithra'});	
+					var template = Handlebars.compile($('#' + templateName).html());
+					var temp = template(object);
+					element.html(temp);
+				});
+				var templateName = "entry-template";
+				var object = {
+					'name':'pavithra',
+					'age':26,
+					'profession':'developer'
+				}
+				myBookBinder.bind(templateName, object, $('#too'));
+				updateNametentimes(object);	
+			});			
+			function updateNametentimes(object){
+				object.name = "Pavithra1";
+				object.name = "Pavithra2";;
+				object.name = "Pavithra3";
+				object.name = "Pavithra4";
+				object.name = "Pavithra5";;
+				object.name = "Pavithra6";
+				object.name = "Pavithra7";
+				object.name = "Pavithra8";
+				object.name = "Pavithra9";
+				setTimeout(function(){
+					object.name = "Pavithra10";
+				}, 1000);
+				setTimeout(function(){
+					object.name = "Pavithra11";
+				}, 0)
+				
+			}
+		</script>
+	</body>
+</html>
